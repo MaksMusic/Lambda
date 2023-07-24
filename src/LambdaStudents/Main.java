@@ -1,6 +1,7 @@
 package LambdaStudents;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Main {
@@ -24,6 +25,9 @@ public class Main {
             }
             return std.getGroup() == 1;
         });
+
+        Collections.sort(studentList,(s1,s2)-> Integer.compare(s1.getAge(),s2.getAge()));
+        System.out.println(studentList);
 
     }
 
