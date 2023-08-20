@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) {
-        //создание листа
+        //СЃРѕР·РґР°РЅРёРµ Р»РёСЃС‚Р°
         Human human1 = new Human("Tom", 22, 100_000);
         Human human2 = new Human("Tom", 27, 200_000);
         Human human3 = new Human("Tom", 24, 40_000);
@@ -19,7 +19,7 @@ public class Main {
         humanList.add(human4);
         humanList.add(human5);
 
-        //запуск метода в который передает лист и Predicate (содержимое функции test)
+        //Р·Р°РїСѓСЃРє РјРµС‚РѕРґР° РІ РєРѕС‚РѕСЂС‹Р№ РїРµСЂРµРґР°РµС‚ Р»РёСЃС‚ Рё Predicate (СЃРѕРґРµСЂР¶РёРјРѕРµ С„СѓРЅРєС†РёРё test)
         testHuman(humanList,(human)-> human.getAge() > 25);
         System.out.println();
         testHuman(humanList,(human)-> human.getSalary() > 100_000);
@@ -27,25 +27,25 @@ public class Main {
         testHuman(humanList,(human)-> human.getAge() > 30);
         System.out.println();
 
-        //объединение двух проверок
+        //РѕР±СЉРµРґРёРЅРµРЅРёРµ РґРІСѓС… РїСЂРѕРІРµСЂРѕРє
         Predicate<Human> predicate = human -> human.getAge() > 25;
         Predicate<Human> predicate2 = human -> human.getSalary() > 50_000;
         testHuman(humanList,predicate.and(predicate2));
         System.out.println();
 
-        //если проходит хотя бы по одной из проверок
+        //РµСЃР»Рё РїСЂРѕС…РѕРґРёС‚ С…РѕС‚СЏ Р±С‹ РїРѕ РѕРґРЅРѕР№ РёР· РїСЂРѕРІРµСЂРѕРє
         Predicate<Human> predicate3 = human -> human.getAge() > 25;
         Predicate<Human> predicate5 = human -> human.getSalary() > 50_000;
         testHuman(humanList,predicate3.or(predicate5));
         System.out.println();
 
-        //противоположное значение проверки если вернут true значит false
-        //то-есть если возраст меньше 25
+        //РїСЂРѕС‚РёРІРѕРїРѕР»РѕР¶РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РїСЂРѕРІРµСЂРєРё РµСЃР»Рё РІРµСЂРЅСѓС‚ true Р·РЅР°С‡РёС‚ false
+        //С‚Рѕ-РµСЃС‚СЊ РµСЃР»Рё РІРѕР·СЂР°СЃС‚ РјРµРЅСЊС€Рµ 25
         Predicate<Human> predicate7 = human -> human.getAge() > 25;
         testHuman(humanList,predicate3.negate());
     }
 
-    //метод test у интерфейса Predicate возвращает true или false
+    //РјРµС‚РѕРґ test Сѓ РёРЅС‚РµСЂС„РµР№СЃР° Predicate РІРѕР·РІСЂР°С‰Р°РµС‚ true РёР»Рё false
     public static void testHuman(List<Human> humansList, Predicate<Human> predicate) {
         for (Human human : humansList) {
             if (predicate.test(human)) {
